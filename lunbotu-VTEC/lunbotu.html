@@ -28,12 +28,13 @@
     $(function () {
         var index=0;
         var timerId;
-        var inner_width=$('.lunbotu-ul').children().width();
-        lunbotu(6)
-        autoMove(6)
-        xiabiao();
+        var inner_width;
+        var num=6;
+        lunbotu(num)
+        autoMove(num)
+        xiabiao(num);
         //num代表图片个数    append  appendChild
-        function lunbotu(num,lunbotu){
+        function lunbotu(num){
             //轮播图片下标
             $('.lunbotu-origin').append("<ul class='lunbotu-ul'></ul>")
 
@@ -73,7 +74,7 @@
 
 
             //获取li的宽度
-            var inner_width=$('.lunbotu-ul').children().width();
+            inner_width=$('.lunbotu-ul').children().width();
             $('.lunbotu-ul').css({
                 width:(num+2)*100+"%",
                 marginLeft:-inner_width+'px'
@@ -107,44 +108,49 @@
 
         }
 
+        //自动轮播方法
+        function timeAuto(num){
+            index++
+            $('.lunbotu-xiabiao').children().css({
+                backgroundColor:'white'
+            })
+            $('.lunbotu-xiabiao').children().eq(index).css({
+                backgroundColor:'black'
+            })
+            $('.lunbotu-ul').animate({
+                marginLeft:(-inner_width*(index+1))+'px'
+            },200,'swing', function () {
+                if(index===num){
+                    index=0
+                    $('.lunbotu-xiabiao').children().eq(index).css({
+                        backgroundColor:'black'
+                    })
+                    $('.lunbotu-ul').css({
+                        marginLeft:(-inner_width*(index+1))+'px'
+                    })
+
+                }
+            })
+        }
         //自动轮播+下标跟随
         function autoMove(num){
 //            var index=0;
-            var inner_width=$('.lunbotu-ul').children().width();
+            inner_width=$('.lunbotu-ul').children().width();
             $('.lunbotu-xiabiao').children().eq(0).css({
                 backgroundColor:'black'
             })
-            timerId=setInterval(function () {
-                index++
-                $('.lunbotu-xiabiao').children().css({
-                    backgroundColor:'white'
-                })
-                $('.lunbotu-xiabiao').children().eq(index).css({
-                    backgroundColor:'black'
-                })
-                $('.lunbotu-ul').animate({
-                    marginLeft:(-inner_width*(index+1))+'px'
-                },200,'swing', function () {
-                    if(index===num){
-                        index=0
-                        $('.lunbotu-xiabiao').children().eq(index).css({
-                            backgroundColor:'black'
-                        })
-                        $('.lunbotu-ul').css({
-                            marginLeft:(-inner_width*(index+1))+'px'
-                        })
-
-                    }
-                })
-            },2000)
+            timerId=setInterval(timeAuto(num)
+                    ,2000)
         }
 
         //下标跟随
-        function xiabiao(){
-            var num=$('.lunbotu-xiabiao').children().length;
-            for(var i=0;i<num;i++){
-                $('.lunbotu-xiabiao').children().eq(i).on('mouseover', function () {
-                    clearInterval(timerId);
+        function xiabiao(num){
+            var figure=$('.lunbotu-xiabiao').children().length;
+            for(var i=0;i<figure;i++){
+                $('.lunbotu-xiabiao').children().eq(i).on('mouseenter', function () {
+                    if(timerId){
+                        clearInterval(timerId);
+                    }
                     var indexLi=$(this).index()
                     console.log(indexLi)
                     $('.lunbotu-xiabiao').children().css({
@@ -154,17 +160,13 @@
                         backgroundColor:'black'
                     })
                     $('.lunbotu-ul').animate({
-                        marginLeft:(-inner_width*(index+1))+'px'
+                        marginLeft:(-inner_width*(indexLi+1))+'px'
                     },200,'swing')
                 })
                 $('.lunbotu-xiabiao').children().eq(i).on('mouseleave', function () {
-                    setInterval(timerId)
+                    timerId=setInterval(autoMove(num),2000)
                 })
             }
         }
-    })
-    $(function () {
-
-
     })
 </script>
