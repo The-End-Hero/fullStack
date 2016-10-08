@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>轮播图</title>
-    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="base.css">
     <style>
         .lunbotu-origin{
             margin: 40px auto;
             width: 750px;
             overflow: hidden;
             position: relative;
+            box-shadow: 0px 0px 5px 5px gray;
+        }
+        .now{
+            background-color: black;
         }
     </style>
 </head>
@@ -22,10 +26,19 @@
 <script src='jquery-3.1.0.min.js'></script>
 <script>
     $(function () {
-        lunbotu(6);
-        function lunbotu(num,lunbotu){ //num代表图片个数    append  appendChild
+        var index=0;
+        var timerId;
+        var inner_width=$('.lunbotu-ul').children().width();
+        lunbotu(6)
+        autoMove(6)
+        xiabiao();
+        //num代表图片个数    append  appendChild
+        function lunbotu(num,lunbotu){
+            //轮播图片下标
             $('.lunbotu-origin').append("<ul class='lunbotu-ul'></ul>")
-            for(var i=0;i<num;i++){//动态创建图片个数个li
+
+            //动态创建图片个数个li
+            for(var i=0;i<num;i++){
                 $('.lunbotu-ul').append("<li class=pic"+i+"><a href='javascript:'><img src='l"+i+".jpg' alt=''></a></li>")
             }
             $('.lunbotu-ul').append("<li class=pic"+0+"><a href='javascript:'><img src='l"+0+".jpg' alt=''></a></li>")
@@ -36,9 +49,8 @@
             for(var i=0;i<num;i++){
                 $('.lunbotu-xiabiao').append("<li class='xiaobiao"+i+"'></li>")
             }
-//            console.log($('.lunbotu-xiabiao').width())
-//            console.log(document.querySelector('.lunbotu-xiabiao').offsetWidth)
-//            console.log(document.querySelector('.lunbotu-xiabiao'))
+            $()
+            console.log($('.lunbotu-xiabiao').width())
 
 
             $('.lunbotu-xiabiao').children().css({
@@ -49,34 +61,106 @@
                 borderRadius:'50%',
                 backgroundColor:'white'
             })
-            console.log($('.lunbotu-xiabiao'))
-            console.log($('.lunbotu-xiabiao')..offsetWidth)
+            console.log($('.lunbotu-xiabiao').width())
+
             $('.lunbotu-xiabiao').css({
-//                width:'750px',
                 position: 'absolute',
-                bottom:'10px',
-//                textAlign:'center'
+                bottom:'0px',
+                //($('.lunbotu-xiabiao').width()为何是750？？？
                 left:'50%',
                 marginLeft:-($('.lunbotu-xiabiao').width()/2)+"px"
-
             })
 
-            var inner_width=$('.lunbotu-ul').children().width();//获取li的宽度
+
+            //获取li的宽度
+            var inner_width=$('.lunbotu-ul').children().width();
             $('.lunbotu-ul').css({
                 width:(num+2)*100+"%",
                 marginLeft:-inner_width+'px'
             })
-            $('.lunbotu-ul').children().children().css({//a标签
-                width:'100%'
+
+            //a标签
+            $('.lunbotu-ul').children().children().css({
+                width:'100%',
+                height:'100%'
             })
-            $('.lunbotu-ul').children().children().children().css({//img标签
-                width:'100%'
+
+            //img标签
+            $('.lunbotu-ul').children().children().children().css({
+                display:'block',
+                width:'100%',
+                height:'100%'
             })
-            $('.lunbotu-ul').children().css({//li标签
+
+            //li标签
+            $('.lunbotu-ul').children().css({
                 width:(100/(num+2))+'%',
                 float:'left'
             })
 
+            //ul宽度需要width完全加载完成才能知道，不然是父元素的750px
+            console.log($('.lunbotu-xiabiao').width())
+            $('.lunbotu-xiabiao').css({
+                marginLeft:-($('.lunbotu-xiabiao').width()/2)+"px"
+            })
+
+
+        }
+
+        //自动轮播+下标跟随
+        function autoMove(num){
+//            var index=0;
+            var inner_width=$('.lunbotu-ul').children().width();
+            $('.lunbotu-xiabiao').children().eq(0).css({
+                backgroundColor:'black'
+            })
+            timerId=setInterval(function () {
+                index++
+                $('.lunbotu-xiabiao').children().css({
+                    backgroundColor:'white'
+                })
+                $('.lunbotu-xiabiao').children().eq(index).css({
+                    backgroundColor:'black'
+                })
+                $('.lunbotu-ul').animate({
+                    marginLeft:(-inner_width*(index+1))+'px'
+                },200,'swing', function () {
+                    if(index===num){
+                        index=0
+                        $('.lunbotu-xiabiao').children().eq(index).css({
+                            backgroundColor:'black'
+                        })
+                        $('.lunbotu-ul').css({
+                            marginLeft:(-inner_width*(index+1))+'px'
+                        })
+
+                    }
+                })
+            },2000)
+        }
+
+        //下标跟随
+        function xiabiao(){
+            var num=$('.lunbotu-xiabiao').children().length;
+            for(var i=0;i<num;i++){
+                $('.lunbotu-xiabiao').children().eq(i).on('mouseover', function () {
+                    clearInterval(timerId);
+                    var indexLi=$(this).index()
+                    console.log(indexLi)
+                    $('.lunbotu-xiabiao').children().css({
+                        backgroundColor:'white'
+                    })
+                    $(this).css({
+                        backgroundColor:'black'
+                    })
+                    $('.lunbotu-ul').animate({
+                        marginLeft:(-inner_width*(index+1))+'px'
+                    },200,'swing')
+                })
+                $('.lunbotu-xiabiao').children().eq(i).on('mouseleave', function () {
+                    setInterval(timerId)
+                })
+            }
         }
     })
     $(function () {
