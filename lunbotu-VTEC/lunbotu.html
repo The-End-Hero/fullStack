@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <style>
+        .lunbotu-origin{
+            margin: 40px auto;
+            width: 750px;
+            overflow: hidden;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class='lunbotu-origin'>
+
+    </div>
+</body>
+</html>
+<script src='jquery-3.1.0.min.js'></script>
+<script>
+    $(function () {
+        lunbotu(6);
+        function lunbotu(num,lunbotu){ //num代表图片个数    append  appendChild
+            $('.lunbotu-origin').append("<ul class='lunbotu-ul'></ul>")
+            for(var i=0;i<num;i++){//动态创建图片个数个li
+                $('.lunbotu-ul').append("<li class=pic"+i+"><a href='javascript:'><img src='l"+i+".jpg' alt=''></a></li>")
+            }
+            $('.lunbotu-ul').append("<li class=pic"+0+"><a href='javascript:'><img src='l"+0+".jpg' alt=''></a></li>")
+            $('.lunbotu-ul').prepend("<li class=pic"+(i-1)+"><a href='javascript:'><img src='l"+(i-1)+".jpg' alt=''></a></li>")
+
+            //动态创建图片下标
+            $('.lunbotu-origin').append("<ul class='lunbotu-xiabiao'></ul>")
+            for(var i=0;i<num;i++){
+                $('.lunbotu-xiabiao').append("<li class='xiaobiao"+i+"'></li>")
+            }
+//            console.log($('.lunbotu-xiabiao').width())
+//            console.log(document.querySelector('.lunbotu-xiabiao').offsetWidth)
+//            console.log(document.querySelector('.lunbotu-xiabiao'))
+
+
+            $('.lunbotu-xiabiao').children().css({
+                float:'left',
+                margin:'0px 5px 10px 10px',
+                width:'15px',
+                height:'15px',
+                borderRadius:'50%',
+                backgroundColor:'white'
+            })
+            console.log($('.lunbotu-xiabiao'))
+            console.log($('.lunbotu-xiabiao')..offsetWidth)
+            $('.lunbotu-xiabiao').css({
+//                width:'750px',
+                position: 'absolute',
+                bottom:'10px',
+//                textAlign:'center'
+                left:'50%',
+                marginLeft:-($('.lunbotu-xiabiao').width()/2)+"px"
+
+            })
+
+            var inner_width=$('.lunbotu-ul').children().width();//获取li的宽度
+            $('.lunbotu-ul').css({
+                width:(num+2)*100+"%",
+                marginLeft:-inner_width+'px'
+            })
+            $('.lunbotu-ul').children().children().css({//a标签
+                width:'100%'
+            })
+            $('.lunbotu-ul').children().children().children().css({//img标签
+                width:'100%'
+            })
+            $('.lunbotu-ul').children().css({//li标签
+                width:(100/(num+2))+'%',
+                float:'left'
+            })
+
+        }
+    })
+    $(function () {
+
+
+    })
+</script>
