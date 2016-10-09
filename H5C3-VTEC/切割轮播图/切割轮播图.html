@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            position: relative;
+            width: 560px;
+            height: 380px;
+            margin: 100px auto;
+            list-style: none;
+            padding: 0;
+        }
+        .items{
+            position: relative;
+            height: 100%;
+            /*width: 10%;*/
+            /*border: 1px solid black;*/
+            transform-style: preserve-3d;
+            transition: all 1s;
+            float: left;
+
+        }
+        .items:hover{
+            /*transform: rotateX(360deg);*/
+        }
+        .item{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
+
+        .item:nth-child(1){
+            background: url("img/04.jpg");
+            transform: rotateX(-90deg)translateZ(190px);
+        }
+        .item:nth-child(2){
+            background: url("img/02.jpg");
+            transform: rotateX(90deg)translateZ(190px);
+        }
+        .item:nth-child(3){
+            background: url("img/01.jpg");
+            transform: rotateX(180deg)translateZ(190px);
+
+        }
+        .item:nth-child(4){
+            background: url("img/04_kiss.jpg");
+            transform: translateZ(190px);
+        }
+        ul a {
+            position: absolute;
+            color: white;
+            background: gray;
+            font-size: 50px;
+            text-align: center;
+            width: 60px;
+            height: 60px;
+            text-decoration: none;
+            font-weight: 900;
+            /* 380-60=2 */
+            top: 160px;
+            /*z-index: 2;*/
+            /*transform: translateZ(190px);*/
+        }
+
+        .prev {
+            left: -30px;
+        }
+
+        .next {
+            right: -30px;
+        }
+        /*.items:nth-child(2) .item{*/
+            /*background-position: -56px 0px;*/
+        /*}*/
+        /*.items:nth-child(3) .item{*/
+            /*background-position: -112px 0px;*/
+        /*}*/
+        /*.items:nth-child(4) .item{*/
+            /*background-position: -168px 0px;*/
+        /*}*/
+        /*.items:nth-child(5) .item{*/
+            /*background-position: -224px 0px;*/
+        /*}*/
+        /*.items:nth-child(6) .item{*/
+            /*background-position: -280px 0px;*/
+        /*}*/
+        /*.items:nth-child(7) .item{*/
+            /*background-position: -336px 0px;*/
+        /*}*/
+        /*.items:nth-child(8) .item{*/
+            /*background-position: -392px 0px;*/
+        /*}*/
+        /*.items:nth-child(9) .item{*/
+            /*background-position: -448px 0px;*/
+        /*}*/
+        /*.items:nth-child(10) .item{*/
+            /*background-position: -504px 0px;*/
+        /*}*/
+        #shuru{
+            margin-bottom: 100px;
+        }
+    </style>
+    <script src='js/jquery-3.0.0.min.js'></script>
+    <script>
+
+        var clickNum=0;
+        var isTransition=false;
+//        var li=document.createElement('li');
+//        var li=document.getElementsByClassName('')
+        var ul=document.getElementsByClassName('container');
+//        var li=ul[0].children[1];
+//        console.log(li)
+        $(function () {
+            var btn=document.getElementById("btn");
+            var shuru=document.getElementById('shuru');
+            btn.onclick= function () {
+                var geshu =parseInt(shuru.value);
+//                console.log(typeof (geshu))
+                 if(geshu>1){
+                     alert(geshu)
+                     for(var i=0;i<geshu-1;i++){
+                         var aa='<li class="items" ><div class="item"></div><div class="item"></div><div class="item"></div><div class="item"></div></li>'
+//                         console.log(aa)
+                         $('.container').append("</br>")
+                         $('.container').append(aa);
+                     }
+                 }else{
+                     return;
+                 }
+                console.log(ul[0].innerHTML)
+            }
+//            $('.shuru').on('blur',function () {
+//                console.log($('.shuru').value)
+//            })
+//            console.log(geshu);
+//            for(var i=0;i<geshu;i++){
+//
+//            }
+            $('.items').last().on('transitionend', function () {
+                isTransition=false;
+            })
+            var len=$('.items').length;
+//            console.log(len);
+            $('.items').css({
+                width:100/len+'%'
+            })
+            $('.items').each(function (index, e) {
+//                e.childNodes.style.backgroundPosition=-560/len*index+'px';
+                $(e).children().css({
+                    backgroundPosition:-560/len*index+'px'
+                })
+//                console.log(len)
+
+            })
+            $('.prev').on('click', function (event) {
+                if(isTransition==true){
+                    return;
+                }
+                isTransition=true
+//                alert("heh")
+                clickNum++;
+//                $('.items').css({
+//                    'transform': 'rotateX('+clickNum*90+'deg)'
+//                })
+                $('.items').each(function (index,e) {
+                    $(e).css({
+                        'transform': 'rotateX('+clickNum*90+'deg)',
+                        'transition-delay': index*0.01+'s'
+                    })
+                })
+            })
+            $('.next').on('click', function (event) {
+//                alert("heh")
+                if(isTransition==true){
+                    return;
+                }
+                isTransition=true
+                clickNum--;
+//                $('.items').css({
+//                    'transform': 'rotateX('+clickNum*90+'deg)'
+//                })
+                $('.items').each(function (index,e) {
+                    $(e).css({
+                        'transform': 'rotateX('+clickNum*90+'deg)',
+                        'transition-delay':index*0.01+'s'
+                    })
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+<ul class='container'>
+    <a href="javascript:void(0)" class='prev'>&lt;</a>
+    <a href="javascript:void(0)" class='next'>&gt;</a>
+    <input type="text" placeholder='请输入切割个数' id='shuru'>
+    <input type="button" value='确定' id='btn'>
+    <li class="items" >
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </li>
+
+</ul>
+
+</body>
+</html>

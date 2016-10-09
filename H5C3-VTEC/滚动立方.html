@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            perspective: 700px;
+            background-color: black;
+        }
+        .total{
+            position: relative;
+        }
+        .hezi{
+            margin: 300px auto;
+            /*border: 1px solid black;*/
+            height: 200px;
+            width: 200px;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+        .pub{
+            position: absolute;
+            /*opacity: 0.5;*/
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 0 15px white;
+        }
+        .a{
+             transform: translateZ(100px);
+            background-color: darkmagenta;
+        }
+        .b{
+            transform: translateZ(-100px);
+            background-color: deeppink;
+        }
+        .c{
+            transform: rotateY(90deg)  translateZ(100px);
+            background-color: darkorange;
+        }
+        .d{
+            transform: rotateY(90deg) translateZ(-100px);
+            background-color: deepskyblue;
+        }
+        .e{
+            transform: rotateX(90deg)translateZ(100px);
+            background-color: darkgoldenrod;
+        }
+        .f{
+            transform: rotateX(90deg)translateZ(-100px);
+            background-color: chartreuse;
+        }
+        @keyframes autoChange {
+            from{
+
+            }to{
+            transform: rotateX(360deg)rotateY(360deg)rotateZ(360deg);
+                         }
+        }
+        .animate{
+            animation: autoChange 5s infinite linear;
+        }
+    </style>
+</head>
+<body>
+<div class='total'>
+    <div class='hezi animate'>
+        <div class='a pub'></div>
+        <div class='b pub'></div>
+        <div class='c pub'></div>
+        <div class='d pub'></div>
+        <div class='e pub'></div>
+        <div class='f pub'></div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跑马灯</title>
+    <style>
+        body{
+            perspective: 700px;
+        }
+        .grandpa{
+            transform-style: preserve-3d;
+        }
+        .grandfa{
+            transform-style: preserve-3d;
+        }
+        .father{
+            position: relative;
+            width: 121px;
+            height: 140px;
+            margin: 300px auto;
+            transform-style: preserve-3d;
+
+        }
+        .pic{
+            position: absolute;
+            background: url("img/lw.jpg");
+            height: 100%;
+            width: 100%;
+        }
+        @keyframes autoRotate {
+            from{
+
+            }to{
+            transform:rotateY(360deg) ;
+                         }
+        }
+        @keyframes autoRotate1 {
+            from{
+
+            }to{
+                 transform:rotateZ(360deg) ;
+             }
+        }
+        @keyframes autoRotate2 {
+            from{
+
+            }to{
+                 transform:rotateZ(360deg) ;
+             }
+        }
+        .animated{
+            animation-name: autoRotate;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+        .animated1{
+             animation-name: autoRotate1;
+             animation-duration: 5s;
+             animation-iteration-count: infinite;
+             animation-timing-function: linear;
+         }
+        .animated2{
+            animation-name: autoRotate2;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+    </style>
+    <script src='jquery-3.1.0.min.js'></script>
+    <script>
+        $(function () {
+            var totalNum=$('.pic').length;
+            var eachDeg=360/totalNum;
+            $('.pic').each(function (ind,e) {
+                $(e).css({
+                    transform:'rotateY('+eachDeg*ind+'deg)translateZ(300px)'
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+<div class='grandpa animated2'>
+    <div class='grandfa animated1'>
+        <div class='father animated'>
+            <div class='pic'></div>
+            <div class='pic'></div>
+            <div class='pic'></div>
+            <div class='pic'></div>
+            <div class='pic'></div>
+            <div class='pic'></div>
+            <div class='pic'></div>
+            <div class='pic'></div>
+            <div class='pic'></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
