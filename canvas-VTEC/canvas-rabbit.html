@@ -36,16 +36,12 @@
     var rabbitWidth=img.width/4;
     var rabbitHeight=img.height/4;
     var h=0;
-    img.onload= function () {//9 48 89 128
+    img.onload= function () {
         var i=0;
         setInterval(function () {
             ctx.clearRect(0,0,1200,400)
-//            i+=40
             i++
             ctx.drawImage(img,i*rabbitWidth,h*rabbitHeight,40,65,100,100,80,130)
-//            ctx.drawImage(img,i,65,40,65,150,100,80,130)
-//            ctx.drawImage(img,i,130,40,65,200,100,80,130)
-//            ctx.drawImage(img,i,195,40,65,250,100,80,130)
             if(i===3){
                 i=0;
             }
@@ -63,27 +59,6 @@
             h=2;
         }
     }
-
-//    // 弧度转化为角度
-//    function toAngle(radian) {
-//        return radian / Math.PI * 180;
-//    }
-//
-//    // 角度转化为弧度
-//    function toRadian(angle) {
-//        return angle / 180 * Math.PI;
-//    }
-//
-//    var arr=['deeppink','orange','black']
-//
-//    for(var i=0;i<arr.length;i++){
-//        ctx.beginPath();
-//        ctx.moveTo(cv.width/2,cv.height/2);
-//        ctx.arc(cv.width/2,cv.height/2,100,toRadian(i*120),toRadian((i+1)*120));
-//        ctx.closePath();
-//        ctx.fillStyle=arr[i];
-//        ctx.fill();
-//    }
 </script>
 </body>
 </html>
