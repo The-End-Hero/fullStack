@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>太极</title>
+</head>
+<body>
+	<canvas id="cv"></canvas>
+
+	<script type="text/javascript">
+		var cv = document.getElementById('cv');
+		var step=1;
+//		cv.style.border = "1px solid red";
+		cv.width = 400;
+		cv.height = 400;
+		cv.style.display='block';
+		cv.style.margin='100px auto';
+		cv.style.borderRadius='50%';
+		cv.style.boxShadow='0px 0px 5px 5px gray';
+
+//		cv.style.transition='all 1s';
+
+
+
+		var ctx = cv.getContext("2d");
+
+		// 弧度转化为角度
+		function toAngle(radian) {
+			return radian / Math.PI * 180;
+		}
+
+		// 角度转化为弧度
+		function toRadian(angle) {
+			return angle / 180 * Math.PI;
+		}
+		taiJi();
+		var timerId=setInterval(function () {
+			step+=1;
+			cv.style.transform='rotate('+step+'deg)'
+		},10)
+		cv.onmouseover= function () {
+			clearInterval(timerId);
+			timerId=setInterval(function () {
+				step+=1;
+				cv.style.transform='rotate('+step+'deg)'
+			},30)
+		}
+		cv.onmouseout= function () {
+			clearInterval(timerId);
+			timerId=setInterval(function () {
+				step+=1;
+				cv.style.transform='rotate('+step+'deg)'
+			},10)
+		}
+		function taiJi(){
+			//左右黑白半圆
+			ctx.arc(200, 200, 200, toRadian(-90), toRadian(90));
+//			ctx.stroke();
+			ctx.fillStyle='white';
+			ctx.fill();
+			ctx.beginPath();
+			ctx.arc(200,200 ,200,toRadian(90),toRadian(-90));
+			ctx.fillStyle='black';
+//			ctx.stroke();
+			ctx.fill();
+
+			//小左右黑白半圆
+			ctx.beginPath();
+			ctx.arc(200,100 ,100,toRadian(90),toRadian(-90));
+			ctx.fillStyle='white';
+			ctx.fill();
+			ctx.beginPath();
+			ctx.arc(200,300 ,100,toRadian(-90),toRadian(90));
+			ctx.fillStyle='black';
+			ctx.fill();
+			ctx.beginPath();
+
+			//黑白小圆
+			ctx.arc(200,300 ,40,toRadian(0),toRadian(360));
+			ctx.fillStyle='white';
+			ctx.fill();
+			ctx.beginPath();
+			ctx.arc(200,100 ,40,toRadian(-90),toRadian(270));
+			ctx.fillStyle='black';
+			ctx.fill();
+		}
+//		//左右黑白半圆
+//		ctx.arc(200, 200, 100, toRadian(-90), toRadian(90));
+//		ctx.stroke();
+//		ctx.fillStyle='white';
+//		ctx.fill();
+//		ctx.beginPath();
+//		ctx.arc(200,200 ,100,toRadian(90),toRadian(-90));
+//		ctx.fillStyle='black';
+//		ctx.stroke();
+//		ctx.fill();
+//
+//		//小左右黑白半圆
+//		ctx.beginPath();
+//		ctx.arc(200,150 ,50,toRadian(90),toRadian(-90));
+//		ctx.fillStyle='white';
+//		ctx.fill();
+//		ctx.beginPath();
+//		ctx.arc(200,250 ,50,toRadian(-90),toRadian(90));
+//		ctx.fillStyle='black';
+//		ctx.fill();
+//		ctx.beginPath();
+//
+//		//黑白小圆
+//		ctx.arc(200,250 ,15,toRadian(0),toRadian(360));
+//		ctx.fillStyle='white';
+//		ctx.fill();
+//		ctx.beginPath();
+//		ctx.arc(200,150 ,15,toRadian(-90),toRadian(270));
+//		ctx.fillStyle='black';
+//		ctx.fill();
+
+
+
+
+//		ctx.beginPath();
+//		ctx.arc(500,200,50,toRadian(-90),toRadian(0));
+//		ctx.moveTo(500,200);
+//		ctx.lineTo(500,150);
+//		ctx.moveTo(500,200);
+//		ctx.lineTo(550,200)
+//		ctx.lineTo(500,150)
+//		ctx.stroke();
+//		ctx.fill();
+	</script>
+</body>
+</html>

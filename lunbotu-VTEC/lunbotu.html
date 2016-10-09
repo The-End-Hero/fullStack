@@ -17,8 +17,9 @@
 </head>
 <body>
     <div class='lunbotu-origin'>
-
     </div>
+
+    <div class='hehe'></div>
 </body>
 </html>
 <script src='jquery-3.1.0.min.js'></script>
@@ -27,9 +28,13 @@
     $(function () {
 
         var num=6
-        lunbotu(num)
+        var origin=document.querySelector('.lunbotu-origin').className
+        alert(origin);
+        console.log(origin)
+        lunbotu(num,origin)
         autoMove(num)
-        xiabiao(num)
+        xiabiao()
 
     })
+
 </script>

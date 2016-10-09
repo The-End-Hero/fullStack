@@ -6,10 +6,10 @@ var timerId;
 var inner_width;
 var num1;
 //num代表图片个数    append  appendChild
-function lunbotu(num){
+function lunbotu(num,origin){
     num1=num;
     //轮播图片下标
-    $('.lunbotu-origin').append("<ul class='lunbotu-ul'></ul>")
+    $('.'+origin).append("<ul class='lunbotu-ul'></ul>")
 
     //动态创建图片个数个li
     for(var i=0;i<num;i++){
@@ -19,7 +19,7 @@ function lunbotu(num){
     $('.lunbotu-ul').prepend("<li class=pic"+(i-1)+"><a href='javascript:'><img src='l"+(i-1)+".jpg' alt=''></a></li>")
 
     //动态创建图片下标
-    $('.lunbotu-origin').append("<ul class='lunbotu-xiabiao'></ul>")
+    $('.'+origin).append("<ul class='lunbotu-xiabiao'></ul>")
     for(var i=0;i<num;i++){
         $('.lunbotu-xiabiao').append("<li class='xiaobiao"+i+"'></li>")
     }
@@ -123,7 +123,7 @@ function autoMove(num){
 }
 
 //下标跟随
-function xiabiao(num){
+function xiabiao(){
     var figure=$('.lunbotu-xiabiao').children().length;
     for(var i=0;i<figure;i++){
         $('.lunbotu-xiabiao').children().eq(i).on('mouseenter', function () {
