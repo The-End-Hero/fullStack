@@ -24,7 +24,7 @@ function lunbotu(num,origin){
         $('.lunbotu-xiabiao').append("<li class='xiaobiao"+i+"'></li>")
     }
     $()
-    console.log($('.lunbotu-xiabiao').width())
+    //console.log($('.lunbotu-xiabiao').width())
 
 
     $('.lunbotu-xiabiao').children().css({
@@ -35,7 +35,7 @@ function lunbotu(num,origin){
         borderRadius:'50%',
         backgroundColor:'white'
     })
-    console.log($('.lunbotu-xiabiao').width())
+    //console.log($('.lunbotu-xiabiao').width())
 
     $('.lunbotu-xiabiao').css({
         position: 'absolute',
@@ -71,9 +71,9 @@ function lunbotu(num,origin){
         width:(100/(num+2))+'%',
         float:'left'
     })
-
+    //console.log($('.'+origin+' .lunbotu-ul').children())
     //ul宽度需要width完全加载完成才能知道，不然是父元素的750px
-    console.log($('.lunbotu-xiabiao').width())
+    //console.log($('.lunbotu-xiabiao').width())
     $('.lunbotu-xiabiao').css({
         marginLeft:-($('.lunbotu-xiabiao').width()/2)+"px"
     })
@@ -132,7 +132,7 @@ function xiabiao(){
             }
             var indexLi=$(this).index();
 
-            console.log(indexLi)
+            //console.log(indexLi)
             $('.lunbotu-xiabiao').children().css({
                 backgroundColor:'white'
             })
