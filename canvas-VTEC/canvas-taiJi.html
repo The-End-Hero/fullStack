@@ -10,7 +10,6 @@
 	<script type="text/javascript">
 		var cv = document.getElementById('cv');
 		var step=1;
-		var m=0
 		cv.width = 400;
 		cv.height = 400;
 		cv.style.display='block';
@@ -46,12 +45,7 @@
 			clearInterval(timerId);
 			timerId=setInterval(function () {
 				step+=1;
-//				m++
 				cv.style.transform='rotate('+step+'deg)'
-//				ctx.scale(m/10)
-//				if(m==100){
-//					m=0
-//				}
 			},10)
 		}
 
