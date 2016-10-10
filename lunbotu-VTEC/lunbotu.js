@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2016/10/9.
+ * Created by VTEC on 2016/10/9.
  */
 var index=0;
 var timerId;
