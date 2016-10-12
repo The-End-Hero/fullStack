@@ -13,28 +13,46 @@
             position: relative;
             box-shadow: 0px 0px 5px 5px gray;
         }
+        .hehe{
+            width: 500px;
+            /*height: 200px;*/
+            margin: 0 auto;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
-    <div class='lunbotu-origin'>
-    </div>
+    <div class='lunbotu-origin'></div>
 
     <div class='hehe'></div>
 </body>
 </html>
-<script src='jquery-3.1.0.min.js'></script>
+<script src='jquery-1.12.4.min.js'></script>
 <script src='lunbotu.js'></script>
 <script>
+
     $(function () {
+        var arr=[
+                'l0.jpg',
+                'l1.jpg',
+                'l2.jpg',
+                'l3.jpg',
+                'l4.jpg',
+                'l5.jpg'
+        ]
+        var num=arr.length
+        var origin=$('.lunbotu-origin').attr('class');
+        start(num,origin,arr)
 
-        var num=6
-        var origin=document.querySelector('.lunbotu-origin').className
-        alert(origin);
-        console.log(origin)
-        lunbotu(num,origin)
-        autoMove(num)
-        xiabiao()
 
+//        var arr1=[
+//            'l0.jpg',
+//            'l1.jpg',
+//            'l2.jpg'
+//        ]
+//        var num1=arr1.length
+//        var origin1=$('.hehe').attr('class')
+//        start(num1,origin1,arr1,timerId1)
     })
 
 </script>
