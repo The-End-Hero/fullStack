@@ -1,6 +1,7 @@
 /**
  * Created by VTEC on 2016/10/9.
  */
+//var index=0;
 var index=0;
 var timerId;
 var inner_width;
