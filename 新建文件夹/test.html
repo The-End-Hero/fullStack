@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body li{
+            background-color: black;
+            width: 200px;
+            z-index: 2;
+            opacity: 0.5;
+            position: relative;
+        }
+        a{
+            position: absolute;
+            color: white;
+            z-index: 2;
+        }
+        span{
+            position: absolute;
+            height: 100%;
+            left: 0px ;
+            top: 0px;
+            width: 0px;
+            background: red;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+<ul>
+    <li><span></span><a href="">111111</a></li>
+    <li><span></span><a href="">222222</a></li>
+    <li><span></span><a href="">333333</a></li>
+    <li><span></span><a href="">444444</a></li>
+    <li><span></span><a href="">555555</a></li>
+    <li><span></span><a href="">666666</a></li>
+    <li><span></span><a href="">777777</a></li>
+    <li><span></span><a href="">888888</a></li>
+</ul>
+<script>
+    var lis=document.querySelectorAll('li')
+    var spans=document.querySelectorAll('span')
+    var num=2
+    for(var i=0;i<lis.length;i++){
+        lis[i].onmouseover= function () {
+            for(var j=0;j<lis.length;j++){
+                lis[j].firstChild.style.width='0px'
+            }
+            this.firstChild.style.width='200px'
+            this.style.zIndex=++num+''
+        }
+    }
+</script>
+</body>
+</html>
