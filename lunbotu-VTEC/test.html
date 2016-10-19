@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var a='123'
+    function fn1(){
+//        console.log(fn1)
+        return fn(a)
+    }
+    function fn(a){
+        console.log(a)
+        var b='zmmsb'
+        return say(b)
+    }
+    function say(str){
+        console.log(str)
+    }
+
+    setInterval(fn1,1000)
+</script>
+</body>
+</html>

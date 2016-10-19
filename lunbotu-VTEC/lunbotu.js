@@ -6,8 +6,20 @@
     //var timerId;
     //var inner_width;
     //var num1;
-    var origin1;
+    //var origin1;
     var start= function (num,origin,arr) {
+        $('.'+origin)[0].num1=num;
+        num_1=$('.'+origin)[0].num1
+        $('.'+origin)[0].origin1=origin;
+        origin_1=$('.'+origin)[0].origin1
+        $('.'+origin)[0].index=0
+        $('.'+origin)[0].inner_width=$('.'+origin+'>.lunbotu-ul').children().width();
+        $('.'+origin)[0].fn= function () {
+            return $('.'+origin)[0].fn1()
+        }
+        $('.'+origin)[0].fn1= function () {
+            return timeAuto(num_1,origin_1)
+        }
         lunbotu(num,origin,arr)
         autoMove(num,origin)
         xiabiao(origin)
@@ -16,7 +28,8 @@
     function lunbotu(num,origin,arr){
 
         $('.'+origin)[0].num1=num;
-        origin1=origin
+        //origin1=origin
+        $('.'+origin)[0].origin1=origin;
         //轮播图片下标
         $('.'+origin).append("<ul class='lunbotu-ul'></ul>")
 
@@ -91,13 +104,19 @@
     }
 //定时器无法执行带参数的函数，必须用一个不带参数的返回带参数的。
 //num1和num相等，无法从html页面直接获取，在lunbotu方法中获取num。
-    function fn(){
-        return timeAuto($('.'+origin)[0].num1,origin1)
-    }
+//    function fn(){
+//        console.log('fn')
+//        return fn1()
+//    }
+//    function fn1(){
+//        console.log(num_1)
+//        console.log(origin_1)
+//        return timeAuto(num_1,origin_1)
+//    }
 //自动轮播方法
     function timeAuto(num,origin){
-        $('.'+origin)[0].index=0
-        $('.'+origin)[0].index++
+
+        $('.'+origin)[0].index+=1
         $('.'+origin+'>.lunbotu-xiabiao').children().css({
             backgroundColor:'white'
         })
@@ -128,7 +147,7 @@
             backgroundColor:'black'
         })
         //var a=num+"";
-        $('.'+origin)[0].timerId=setInterval(fn
+        $('.'+origin)[0].timerId=setInterval($('.'+origin)[0].fn
             ,2000)
     }
 
@@ -155,7 +174,7 @@
                 index=indexLi;
             })
             $('.'+origin+'>.lunbotu-xiabiao').children().eq(i).on('mouseleave', function () {
-                $('.'+origin)[0].timerId=setInterval(fn,2000)
+                $('.'+origin)[0].timerId=setInterval($('.'+origin)[0].fn,2000)
             })
         }
     }
