@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app='myApp'ng-controller='myController'>
+<input type="text"ng-model='result'>
+<br>
+<input type="button"ng-model='num7' value='7'ng-click='add7()'>
+<input type="button"ng-model='num8' value='8'ng-click='add8()'>
+<input type="button"ng-model='num9'value='9'ng-click='add9()'>
+<input type="button"value='+' ng-model="jia" ng-click='addjia()'>
+<br>
+<input type="button"ng-model='num4'value='4'ng-click='add4()'>
+<input type="button"ng-model='num5'value='5'ng-click='add5()'>
+<input type="button"ng-model='num6'value='6'ng-click='add6()'>
+<input type="button"value='-'ng-model='jian' ng-click='addjian()'>
+
+<br>
+<input type="button"ng-model='num1'value='1'ng-click='add1()'>
+<input type="button"ng-model='num2'value='2'ng-click='add2()'>
+<input type="button"ng-model='num3'value='3'ng-click='add3()'>
+<input type="button"value='*'ng-model='cheng' ng-click='addcheng()'>
+
+<br>
+<input type="button"ng-model='num0'value='0'ng-click='add0()'>
+<input type="button"value='='ng-model='dengyu' ng-click='add()'>
+<input type="button"value='c'ng-model='reset'ng-click='reset()'>
+<input type="button"value='/'ng-model='chu' ng-click='addchu()'>
+
+<!--<input type="number"ng-model='num1'>-->
+<!--+-->
+<!--<input type="number"ng-model='num2'>-->
+<!--<input type="button" value='='ng-click='add()'>-->
+<!--<input type="number"ng-model='num3'>-->
+</body>
+<script src='angular.js'></script>
+<script>
+    angular.module('myApp',[])
+            .controller('myController', function ($scope) {
+                $scope.reset= function () {
+                    $scope.result=''
+                    index=0
+                    arr=[]
+                    num=[]
+                    hehe=0
+                }
+                //index记录加减乘除次数  arr记录加减乘除 num为数字  初始化
+                var index=0
+                var arr=[]
+                var num=[]
+                var hehe=0
+                $scope.num0=0
+                $scope.num1=1
+                $scope.num2=2
+                $scope.num3=3
+                $scope.num4=4
+                $scope.num5=5
+                $scope.num6=6
+                $scope.num7=7
+                $scope.num8=8
+                $scope.num9=9
+                $scope.jia='+'
+                $scope.jian='-'
+                $scope.cheng='*'
+                $scope.chu='/'
+                $scope.result=''
+                $scope.add= function () {
+                    $scope.result=$scope.result.split(/[^\w]/)
+                    console.log($scope.result)
+                    for(var i=0;i<$scope.result.length;i++){
+                        num.push(parseInt($scope.result[i]))
+                    }
+                    console.log(num)
+                    console.log(arr)
+                    console.log(index)
+                    hehe=num[0]
+                    for(var i=0;i<index;i++){
+
+                        if(arr[i]=='*'){
+                            hehe=hehe*num[i+1]
+                        }
+                        if(arr[i]=='/'){
+                            hehe=hehe/num[i+1]
+                        }
+                        if(arr[i]=='+'){
+                            hehe=hehe+num[i+1]
+                        }
+                        if(arr[i]=='-'){
+                            hehe=hehe-num[i+1]
+                        }
+                    }
+                    console.log(hehe)
+                    $scope.result=hehe
+                }
+                $scope.addjia= function () {
+                    $scope.result+=$scope.jia+''
+                    index++
+                    arr.push('+')
+                }
+                $scope.addjian= function () {
+                    $scope.result+=$scope.jian+''
+                    index++
+                    arr.push('-')
+                }
+                $scope.addcheng= function () {
+                    $scope.result+=$scope.cheng+''
+                    index++
+                    arr.push('*')
+                }
+                $scope.addchu= function () {
+                    $scope.result+=$scope.chu+''
+                    index++
+                    arr.push('/')
+                }
+                $scope.add0= function () {
+                    $scope.result+=$scope.num0+''
+                    console.log($scope.result)
+                }
+                $scope.add1= function () {
+                    $scope.result+=$scope.num1+''
+                    console.log($scope.result)
+                }
+                $scope.add2= function () {
+                    $scope.result+=$scope.num2+''
+                    console.log($scope.result)
+                }
+                $scope.add3= function () {
+                    $scope.result+=$scope.num3+''
+                    console.log($scope.result)
+                }
+                $scope.add4= function () {
+                    $scope.result+=$scope.num4+''
+                    console.log($scope.result)
+                }
+                $scope.add5= function () {
+                    $scope.result+=$scope.num5+''
+                    console.log($scope.result)
+                }
+                $scope.add6= function () {
+                    $scope.result+=$scope.num6+''
+                    console.log($scope.result)
+                }
+                $scope.add7= function () {
+                    $scope.result+=$scope.num7+''
+                    console.log($scope.result)
+                }
+                $scope.add8= function () {
+                    $scope.result+=$scope.num8+''
+                    console.log($scope.result)
+                }
+                $scope.add9= function () {
+                    $scope.result+=$scope.num9+''
+                    console.log($scope.result)
+                }
+            })
+</script>
+</html>
