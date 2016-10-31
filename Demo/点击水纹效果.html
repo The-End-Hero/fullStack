@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            position: relative;
+            background: skyblue;
+            left: 100px;
+            top: 100px;
+            overflow: hidden;
+        }
+        p{
+            color: white;
+            text-align: center;
+            line-height: 200px;
+            z-index: 2;
+        }
+        span{
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            opacity: .4;
+            background: white;
+            top: 0px;
+            left: 0px;
+            transform-origin:50% 50%;
+            transform: scale(15);
+        }
+    </style>
+</head>
+<body>
+<div>
+    <p>金州勇士</p>
+    <!--<span></span>-->
+</div>
+<script src='jquery-1.12.4.min.js'></script>
+<script>
+    window.onload= function () {
+        var div=document.querySelector('body')
+
+//        e.stopPropagation()
+        $(div).on('click', function (e) {
+            var span=$('<span class=""></span>').appendTo($('div'))
+            $(span).hide()
+//            e.preventDefault();
+//            e.stopPropagation()
+//            console.log(e)
+            console.log($('div').width())
+            console.log($('div').height())
+            console.log(e.pageX-$('div').offset().left)
+            console.log(e.pageY-$('div').offset().top)
+            if((e.pageX-$('div').offset().left)>0&&(e.pageX-$('div').offset().left)<$('div').width()&&(e.pageY-$('div').offset().top)>0&&(e.pageY-$('div').offset().top)<$('div').height()){
+                $(span).css({
+                    left:(e.pageX- $('div').offset().left)-20+'px',
+                    top:(e.pageY- $('div').offset().top)-20+'px'
+                })
+                $(span).show(400)
+                setTimeout(function () {
+                    $(span).hide(300)
+//                    $(span).remove()
+                },400)
+                setTimeout(function () {
+                    $(span).remove()
+                },800)
+            }
+        })
+    }
+</script>
+</body>
+</html>
